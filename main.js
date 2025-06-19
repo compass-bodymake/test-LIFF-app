@@ -41,6 +41,7 @@ function getSkipRedirectType() {
 async function initializeLIFF() {
      try {
         console.log("LIFFの初期化を開始...");
+       console.log("現在のバージョン v3");
 
        await liff.init({ liffId: "dummy" }); // 一旦初期化（ダミーID可、もしくは test ID でも可）
        
