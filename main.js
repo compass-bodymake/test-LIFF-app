@@ -47,9 +47,7 @@ async function initializeLIFF() {
        const paramType = urlParams.type;
 
        console.log("💡 paramType:", paramType);
-console.log("💡 IS_PRODUCTION_FLG:", IS_PRODUCTION_FLG);
-
-
+       console.log("💡 IS_PRODUCTION_FLG:", IS_PRODUCTION_FLG);
        console.log("💡 現在のURLパラメータ:", urlParams); // ← ここ重要
 
        // 先に本番/テストフラグを確定
