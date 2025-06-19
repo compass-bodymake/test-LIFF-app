@@ -2,7 +2,7 @@ import './style.css';
 import liff from '@line/liff';
 
 // 各グローバル変数を定義
-let IS_PRODUCTION_FLG = true;
+let IS_PRODUCTION_FLG = false;
 let userType = "client"; // デフォルト
 let userId = null;
 let displayName = null;
@@ -13,7 +13,7 @@ function getGASUrl() {
     // 本番環境
     ? "https://script.google.com/macros/s/AKfycbw_qZ108jgUiDIIzmaPW6vCB9oVI24qRYpyE36qNVsRdHCpwXzP9Dbz0DmdpGBwR9Mk/exec"
     // テスト環境
-    : "https://script.google.com/macros/s/AKfycbzAaAzz6LpIQUo7esriT-UP9iVx8Ls6_xRvKccNojAT4eknqJQ4ALiAKem61SsJSNE3Qw/exec";
+    : "https://script.google.com/macros/s/AKfycbz_cX3vs-DGPEL39JGDVzt7sTtRjPgArB2aFOR1veJRWsLdMbpEuTC2lnllxxZv38eexg/exec";
 }
 
 // ✅ URLパラメータを取得する関数
