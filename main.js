@@ -41,17 +41,24 @@ function getSkipRedirectType() {
 async function initializeLIFF() {
      try {
         console.log("LIFFの初期化を開始...");
+
+       // URLから本番かテストかを自動判定
+       const currentUrl = window.location.href;
+       IS_PRODUCTION_FLG = currentUrl.includes("2006759470-npBm9Mxr");
+
+       const currentLIFFId = IS_PRODUCTION_FLG
+         ? "2006759470-npBm9Mxr" // 本番
+         : "2007474035-goRlynEz"; // テスト
+       
+       console.log("🌐 適用される LIFF ID:", currentLIFFId);
+       console.log("💡 IS_PRODUCTION_FLG:", IS_PRODUCTION_FLG);
+
   
        // URLパラメータ先に取得
        const urlParams = getUrlParams();
        const paramType = urlParams.type;
 
-       console.log("💡 paramType:", paramType);
-       console.log("💡 IS_PRODUCTION_FLG:", IS_PRODUCTION_FLG);
        console.log("💡 現在のURLパラメータ:", urlParams); // ← ここ重要
-
-       // 先に本番/テストフラグを確定
-       IS_PRODUCTION_FLG = !(paramType === "test_client" || paramType === "test_coach");
 
        // その後、正しい LIFF ID で初期化
        const currentLIFFId = IS_PRODUCTION_FLG
