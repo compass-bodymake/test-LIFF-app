@@ -60,13 +60,6 @@ async function initializeLIFF() {
 
        console.log("💡 現在のURLパラメータ:", urlParams); // ← ここ重要
 
-       // その後、正しい LIFF ID で初期化
-       const currentLIFFId = IS_PRODUCTION_FLG
-         ? "2006759470-npBm9Mxr"
-         : "2007474035-goRlynEz";
-
-       console.log("🌐 適用される LIFF ID:", currentLIFFId);
-
        await liff.init({ liffId: currentLIFFId });
 
         console.log("✅ LIFF初期化成功！");
