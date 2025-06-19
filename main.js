@@ -42,9 +42,13 @@ async function initializeLIFF() {
      try {
         console.log("LIFFの初期化を開始...");
 
-       // URLから本番かテストかを自動判定
-       const currentUrl = window.location.href;
-       IS_PRODUCTION_FLG = currentUrl.includes("2006759470-npBm9Mxr");
+       await liff.init({ liffId: "dummy" }); // 一旦初期化（ダミーID可、もしくは test ID でも可）
+       
+       const liffContext = liff.getContext();
+       const liffIdUsed = liffContext?.liffId || ""; // LIFF IDを取得
+
+       IS_PRODUCTION_FLG = liffIdUsed === "2006759470-npBm9Mxr";
+
 
        const currentLIFFId = IS_PRODUCTION_FLG
          ? "2006759470-npBm9Mxr" // 本番
