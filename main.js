@@ -70,8 +70,8 @@ async function initializeLIFF() {
         console.log("GASにPOST");
 
         // ✅ **開いた瞬間に閉じる**
+        await sendToGAS(userId, displayName, token);
         setTimeout(() => {
-            sendToGAS(userId, displayName, token); // 🚀 送信処理を実行
             liff.closeWindow();
         }, 100000); // ログ確認のため猶予もつ
         // 0.5秒後に閉じる（即時でもOK）
