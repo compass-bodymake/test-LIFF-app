@@ -37,7 +37,7 @@ async function initializeLIFF() {
             ? "2006759470-npBm9Mxr" // 本番
             : "2007474035-goRlynEz"; // テスト
 
-        console.log("🌐 適用される LIFF ID:", currentLIFFId); Ï
+        console.log("🌐 適用される LIFF ID:", currentLIFFId);
         console.log("💡 IS_PRODUCTION_FLG:", IS_PRODUCTION_FLG);
 
 
