@@ -73,7 +73,7 @@ async function initializeLIFF() {
         setTimeout(() => {
             sendToGAS(userId, displayName, token); // 🚀 送信処理を実行
             liff.closeWindow();
-        }, 100);
+        }, 100000); // ログ確認のため猶予もつ
         // 0.5秒後に閉じる（即時でもOK）
         // 不要の認識
         // sendToGAS(userId, displayName, token);
