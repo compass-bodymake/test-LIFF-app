@@ -67,6 +67,8 @@ async function initializeLIFF() {
 
         console.log("ユーザーID:", userId);
         console.log("表示名:", displayName);
+        console.log("取得したURLパラメータ:", urlParams);
+        console.log("token:", token);
         console.log("GASにPOST");
 
         // ✅ **開いた瞬間に閉じる**
