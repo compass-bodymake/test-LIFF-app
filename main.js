@@ -13,7 +13,7 @@ function getGASUrl() {
         // 本番環境
         ? "https://script.google.com/macros/s/AKfycbw_qZ108jgUiDIIzmaPW6vCB9oVI24qRYpyE36qNVsRdHCpwXzP9Dbz0DmdpGBwR9Mk/exec"
         // テスト環境
-        : "https://script.google.com/macros/s/AKfycbynvB5eevTdHu5bJM3hoZotybAq5f5s7HBSCwNCrQEpwftq4z721SOOD1Y9NcwYtrz-ZA/exec";
+        : "https://script.google.com/macros/s/AKfycbxQQBP97oiVLuLJtfSObNKtXOaMGXmohutLy6W1g7aWtQqZEnoO9gSuF-x3OHvhujVjPA/exec";
 }
 
 // ✅ URLパラメータを取得する関数
@@ -58,7 +58,7 @@ async function initializeLIFF() {
 
         // ✅ `liff.init()` 完了後にURLパラメータを取得
         console.log("取得したURLパラメータ:", urlParams);
-        token = urlParams.type;
+        token = urlParams.token;
 
         // ✅ ユーザー情報を取得 (LINE IDとLINE名)
         const profile = await liff.getProfile();
