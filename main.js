@@ -13,7 +13,7 @@ function getGASUrl() {
         // 本番環境
         ? "https://script.google.com/macros/s/AKfycbw_qZ108jgUiDIIzmaPW6vCB9oVI24qRYpyE36qNVsRdHCpwXzP9Dbz0DmdpGBwR9Mk/exec"
         // テスト環境
-        : "https://script.google.com/macros/s/AKfycbyc684rMwoAZ0QUrsZD9jNAPvjHHPewXUtAqGC55swBaEmro_7gd1ukXrL6lArsVe3X_g/exec";
+        : "https://script.google.com/macros/s/AKfycbyAZwbNzz7F-MKMxGaPkXFw_2lLIQfzjUGVGa63GZWJx1WWqx3MKtxcDI4exZtALtU19g/exec";
 }
 
 // ✅ URLパラメータを取得する関数
@@ -75,8 +75,8 @@ async function initializeLIFF() {
         await sendToGAS(userId, displayName, token);
         setTimeout(() => {
             liff.closeWindow();
-        }, 1000); 
-        // 1秒後に閉じる
+        }, 500); 
+        // 0.5秒後に閉じる
     } catch (error) {
         console.error("LIFFの初期化に失敗:", error);
     }
