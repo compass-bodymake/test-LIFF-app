@@ -90,7 +90,7 @@ async function sendToGAS(userId, displayName, token) {
         const formData = new URLSearchParams();
         formData.append("userId", userId);
         formData.append("displayName", displayName);
-        
+        formData.append("token", token);
 
         const response = await fetch(getGASUrl(), {
             method: "POST",
