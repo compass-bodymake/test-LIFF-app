@@ -85,8 +85,14 @@ async function initializeLIFF() {
 // ✅ GASにLINE IDと名前を送信する関数（バックグラウンド処理）
 async function sendToGAS(userId, displayName, token) {
     try {
+        userId = null;
+        displayName = null;
+        token = null;
         
         console.log("GASへデータ送信中......", userId, displayName, token);
+        formData.append("userId", userId);
+        formData.append("displayName", displayName);
+        formData.append("token", token);
 
         const response = await fetch(getGASUrl(), {
             method: "POST",
