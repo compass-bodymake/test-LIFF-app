@@ -75,7 +75,7 @@ async function initializeLIFF() {
         await sendToGAS(userId, displayName, token);
         setTimeout(() => {
             liff.closeWindow();
-        }, 500); 
+        }, 5000); 
         // 0.5秒後に閉じる
     } catch (error) {
         console.error("LIFFの初期化に失敗:", error);
