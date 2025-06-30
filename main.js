@@ -44,7 +44,7 @@ async function initializeLIFF() {
         // URLパラメータ先に取得
         const urlParams = getUrlParams();
 
-        await liff.init({ liffId: currentLIFFId });
+        await liff.init({ liffId: "XXX" });
 
         console.log("✅ LIFF初期化成功！");
 
