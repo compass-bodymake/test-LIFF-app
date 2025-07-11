@@ -6,6 +6,7 @@ let IS_PRODUCTION_FLG = false;
 let userId = null;
 let displayName = null;
 let token = null;
+let coachNo =null;
 
 // ✅ GASのURLは関数にして毎回評価
 function getGASUrl() {
@@ -59,6 +60,7 @@ async function initializeLIFF() {
         // ✅ `liff.init()` 完了後にURLパラメータを取得
         console.log("取得したURLパラメータ:", urlParams);
         token = urlParams.token;
+        coachNo = urlParams.forward_param;
 
         // ✅ ユーザー情報を取得 (LINE IDとLINE名)
         const profile = await liff.getProfile();
@@ -69,6 +71,7 @@ async function initializeLIFF() {
         console.log("表示名:", displayName);
         console.log("取得したURLパラメータ:", urlParams);
         console.log("token:", token);
+        console.log("coachNo:", coachNo);
         console.log("GASにPOST");
 
         // ✅ **開いた瞬間に閉じる**
