@@ -82,11 +82,14 @@ async function initializeLIFF() {
             <p>✅ 登録が完了しました。</p>
             <p><strong>LINE名：</strong> ${displayName}</p>
             <p><strong>担当コーチ番号：</strong> ${coachNo}</p>
-            <button style="margin-top:20px; font-size:18px; padding:10px 20px;" onclick="liff.closeWindow()">
+            <button id="closeBtn" style="margin-top:20px; font-size:18px; padding:10px 20px;">
               閉じる
             </button>
           </div>
         `;
+        
+        document.getElementById("closeBtn").addEventListener("click", () => {
+          liff.closeWindow();
         
         // setTimeout(() => {
         //     liff.closeWindow();
