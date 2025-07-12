@@ -76,9 +76,22 @@ async function initializeLIFF() {
 
         // ✅ **開いた瞬間に閉じる**
         await sendToGAS(userId, displayName, token, coachNo);
-        setTimeout(() => {
-            liff.closeWindow();
-        }, 50000); 
+
+        document.body.innerHTML = `
+  <div style="padding:20px; font-size:16px; font-family:sans-serif;">
+    <p>✅ 登録が完了しました。</p>
+    <p><strong>LINE名：</strong> ${displayName}</p>
+    <p><strong>担当コーチ番号：</strong> ${coachNo}</p>
+    <p><strong>LINE ID：</strong> ${userId}</p>
+    <button style="margin-top:20px; font-size:18px; padding:10px 20px;" onclick="liff.closeWindow()">
+      閉じる
+    </button>
+  </div>
+`;
+        
+        // setTimeout(() => {
+        //     liff.closeWindow();
+        // }, 50000); 
         // 0.5秒後に閉じる
     } catch (error) {
         console.error("LIFFの初期化に失敗:", error);
