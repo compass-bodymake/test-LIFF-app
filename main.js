@@ -41,12 +41,7 @@ async function initializeLIFF() {
         console.log("🌐 適用される LIFF ID:", currentLIFFId);
         console.log("💡 IS_PRODUCTION_FLG:", IS_PRODUCTION_FLG);
 
-
-        // URLパラメータ先に取得
-        const urlParams = getUrlParams();
-
         await liff.init({ liffId: currentLIFFId });
-
         console.log("✅ LIFF初期化成功！");
 
         // ✅ ログインしていなければログイン処理を行う
@@ -56,6 +51,9 @@ async function initializeLIFF() {
             return;
         }
         console.log("ログイン済み！ユーザー情報、URLパラメータを取得します");
+
+        // URLパラメータ先に取得
+        const urlParams = getUrlParams();
 
         // ✅ `liff.init()` 完了後にURLパラメータを取得
         console.log("取得したURLパラメータ:", urlParams);
