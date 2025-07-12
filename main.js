@@ -78,16 +78,15 @@ async function initializeLIFF() {
         await sendToGAS(userId, displayName, token, coachNo);
 
         document.body.innerHTML = `
-  <div style="padding:20px; font-size:16px; font-family:sans-serif;">
-    <p>✅ 登録が完了しました。</p>
-    <p><strong>LINE名：</strong> ${displayName}</p>
-    <p><strong>担当コーチ番号：</strong> ${coachNo}</p>
-    <p><strong>LINE ID：</strong> ${userId}</p>
-    <button style="margin-top:20px; font-size:18px; padding:10px 20px;" onclick="liff.closeWindow()">
-      閉じる
-    </button>
-  </div>
-`;
+          <div style="padding:20px; font-size:16px; font-family:sans-serif;">
+            <p>✅ 登録が完了しました。</p>
+            <p><strong>LINE名：</strong> ${displayName}</p>
+            <p><strong>担当コーチ番号：</strong> ${coachNo}</p>
+            <button style="margin-top:20px; font-size:18px; padding:10px 20px;" onclick="liff.closeWindow()">
+              閉じる
+            </button>
+          </div>
+        `;
         
         // setTimeout(() => {
         //     liff.closeWindow();
