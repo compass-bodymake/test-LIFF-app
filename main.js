@@ -75,10 +75,10 @@ async function initializeLIFF() {
         console.log("GASにPOST");
 
         // ✅ **開いた瞬間に閉じる**
-        await sendToGAS(userId, displayName, token);
+        await sendToGAS(userId, displayName, token, coachNo);
         setTimeout(() => {
             liff.closeWindow();
-        }, 500); 
+        }, 50000); 
         // 0.5秒後に閉じる
     } catch (error) {
         console.error("LIFFの初期化に失敗:", error);
@@ -86,14 +86,15 @@ async function initializeLIFF() {
 }
 
 // ✅ GASにLINE IDと名前を送信する関数（バックグラウンド処理）
-async function sendToGAS(userId, displayName, token) {
+async function sendToGAS(userId, displayName, token, coachNo) {
     try {
-        console.log("GASへデータ送信中......", userId, displayName, token);
+        console.log("GASへデータ送信中......", userId, displayName, token, coachNo);
         
         const formData = new URLSearchParams();
         formData.append("userId", userId);
         formData.append("displayName", displayName);
         formData.append("token", token);
+        formData.append("coachNo", coachNo);
 
         const response = await fetch(getGASUrl(), {
             method: "POST",
