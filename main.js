@@ -86,8 +86,10 @@ async function initializeLIFF() {
           </div>
         `;
         
+        // ✅ 手動で閉じるボタン（これがあると"意味ある画面"と見なされる）
         document.getElementById("closeBtn").addEventListener("click", () => {
           liff.closeWindow();
+        });
         
         // setTimeout(() => {
         //     liff.closeWindow();
