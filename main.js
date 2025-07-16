@@ -3,6 +3,7 @@ import liff from '@line/liff';
 
 // 各グローバル変数を定義
 let IS_PRODUCTION_FLG = false;
+let action = null;
 let userId = null;
 let displayName = null;
 let token = null;
@@ -52,19 +53,25 @@ async function initializeLIFF() {
         }
         console.log("ログイン済み！ユーザー情報、URLパラメータを取得します");
 
-        // URLパラメータ先に取得
-        const urlParams = getUrlParams();
-
-        // ✅ `liff.init()` 完了後にURLパラメータを取得
-        console.log("取得したURLパラメータ:", urlParams);
-        token = urlParams.token;
-        coachNo = urlParams.forward_param;
-
         // ✅ ユーザー情報を取得 (LINE IDとLINE名)
         const profile = await liff.getProfile();
         userId = profile.userId;
         displayName = profile.displayName;
 
+        // URLパラメータ先に取得
+        const urlParams = getUrlParams();
+
+        // ✅ `liff.init()` 完了後にURLパラメータを取得
+        console.log("取得したURLパラメータ:", urlParams);
+        action = urlParams.action;
+
+        if (action == null || action == "") {
+            // actionがついていない場合初期呼び出し
+            coachNo = urlParams.forward_param;
+        }
+        
+        token = urlParams.token;
+        
         console.log("ユーザーID:", userId);
         console.log("表示名:", displayName);
         console.log("取得したURLパラメータ:", urlParams);
