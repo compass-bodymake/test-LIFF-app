@@ -65,12 +65,39 @@ async function initializeLIFF() {
         console.log("取得したURLパラメータ:", urlParams);
         action = urlParams.action;
 
-        if (action == null || action == "") {
+        if (action == null || action == "" ) {
+            if (!urlParams.forward_param) {
+                console.warn("初期呼び出しでforward_paramなし");
+                retrun; // TODO: 返却値
+            }
             // actionがついていない場合初期呼び出し
-            coachNo = urlParams.forward_param;
+            console.log("初期の呼び出しのためaction未定義");
+            action = "init"
         }
-        
-        token = urlParams.token;
+
+        switch (action) {
+            case "init":
+                console.log("action:", action);
+                coachNo = urlParams.forward_param;
+                break;
+            case "mailAuthRegist":
+                console.log("action:", action);
+                token = urlParams.token;
+                break;
+            case "mailAuthUpdate":
+                console.log("action:", action);
+                token = urlParams.token;
+                break;
+            case "openSupportNote":
+                console.log("action:", action);
+                break;
+            case "openstackDialy":
+                console.log("action:", action);
+                break;
+            default:
+                console.warn("未定義のactionが指定されました:", action);
+                break;
+        }
         
         console.log("ユーザーID:", userId);
         console.log("表示名:", displayName);
@@ -80,8 +107,9 @@ async function initializeLIFF() {
         console.log("GASにPOST");
 
         // ✅ **開いた瞬間に閉じる**
-        await sendToGAS(userId, displayName, token, coachNo);
+        await sendToGAS(userId, displayName, action, token, coachNo);
 
+        // ----------デバッグ用に記述----------
         document.body.innerHTML = `
           <div style="padding:20px; font-size:16px; font-family:sans-serif;">
             <p>✅ 登録が完了しました。</p>
@@ -97,6 +125,7 @@ async function initializeLIFF() {
         document.getElementById("closeBtn").addEventListener("click", () => {
           liff.closeWindow();
         });
+        // ----------ここまで----------
         
         // setTimeout(() => {
         //     liff.closeWindow();
@@ -108,13 +137,14 @@ async function initializeLIFF() {
 }
 
 // ✅ GASにLINE IDと名前を送信する関数（バックグラウンド処理）
-async function sendToGAS(userId, displayName, token, coachNo) {
+async function sendToGAS(userId, displayName, action, token, coachNo) {
     try {
-        console.log("GASへデータ送信中......", userId, displayName, token, coachNo);
+        console.log("GASへデータ送信中......", userId, displayName, action, token, coachNo);
         
         const formData = new URLSearchParams();
         formData.append("userId", userId);
         formData.append("displayName", displayName);
+        formData.append("action", action);
         formData.append("token", token);
         formData.append("coachNo", coachNo);
 
