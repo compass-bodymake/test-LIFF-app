@@ -7,7 +7,6 @@ let action = null;
 let userId = null;
 let displayName = null;
 let token = null;
-let coachNo =null;
 
 // ✅ GASのURLは関数にして毎回評価
 function getGASUrl() {
@@ -15,7 +14,7 @@ function getGASUrl() {
         // 本番環境
         ? "https://script.google.com/macros/s/AKfycbw_qZ108jgUiDIIzmaPW6vCB9oVI24qRYpyE36qNVsRdHCpwXzP9Dbz0DmdpGBwR9Mk/exec"
         // テスト環境
-        : "https://script.google.com/macros/s/AKfycbyDES3CCEQIqeI3ezJagNyKvf-_VQrqJqGmLiC-vbpI/dev";
+        : "https://script.google.com/macros/s/AKfycbw2eWT1KMm-26LtpTTpEMO0PFFiiYvxm5_6CcZCUsllGJx0uaRE4YWUYTJrzd7OvJ7ONw/exec";
 }
 
 // ✅ URLパラメータを取得する関数
