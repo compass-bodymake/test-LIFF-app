@@ -79,7 +79,7 @@ async function initializeLIFF() {
         
         setTimeout(() => {
             liff.closeWindow();
-        }, 500); 
+        }, 500000); 
         // 0.5秒後に閉じる
     } catch (error) {
         console.error("LIFFの初期化に失敗:", error);
