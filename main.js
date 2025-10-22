@@ -3,10 +3,10 @@ import liff from '@line/liff';
 
 // 各グローバル変数を定義
 let IS_PRODUCTION_FLG = false;
-let action = null;
 let userId = null;
 let displayName = null;
 let token = null;
+let bmFlg = ""; 
 
 // ✅ GASのURLは関数にして毎回評価
 function getGASUrl() {
@@ -63,19 +63,22 @@ async function initializeLIFF() {
         // ✅ `liff.init()` 完了後にURLパラメータを取得
         console.log("取得したURLパラメータ:", urlParams);
         token = urlParams.token;
+        bmFlg = urlParams.bmFlg; 
         
         console.log("ユーザーID:", userId);
         console.log("表示名:", displayName);
         console.log("取得したURLパラメータ:", urlParams);
         console.log("token:", token);
+        console.log("bmFlg:", bmFlg);
+
         console.log("GASにPOST");
 
         // ✅ **開いた瞬間に閉じる**
-        await sendToGAS(userId, displayName, token);
+        await sendToGAS(userId, displayName, token, bmFlg);
         
         setTimeout(() => {
             liff.closeWindow();
-        }, 500000); 
+        }, 500); 
         // 0.5秒後に閉じる
     } catch (error) {
         console.error("LIFFの初期化に失敗:", error);
@@ -83,14 +86,15 @@ async function initializeLIFF() {
 }
 
 // ✅ GASにLINE IDと名前を送信する関数（バックグラウンド処理）
-async function sendToGAS(userId, displayName, token) {
+async function sendToGAS(userId, displayName, token, bmFlg) {
     try {
-        console.log("GASへデータ送信中......", userId, displayName, token);
+        console.log("GASへデータ送信中......", userId, displayName, token, bmFlg);
         
         const formData = new URLSearchParams();
         formData.append("userId", userId);
         formData.append("displayName", displayName);
         formData.append("token", token);
+        formData.append("bmFlg", bmFlg); 
 
         const response = await fetch(getGASUrl(), {
             method: "POST",
