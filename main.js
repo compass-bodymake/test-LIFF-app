@@ -46,9 +46,10 @@ async function initializeLIFF() {
 
         // ✅ ログインしていなければログイン処理を行う
         if (!liff.isLoggedIn()) {
-            console.log("LINEログインが必要です");
-            liff.login();
-            return;
+           console.log("LINEログインが必要です");
+           // ← クエリを確実に保持して戻る
+           liff.login({ redirectUri: window.location.href });
+           return;
         }
         console.log("ログイン済み！ユーザー情報、URLパラメータを取得します");
 
