@@ -79,7 +79,7 @@ async function initializeLIFF() {
         
         setTimeout(() => {
             liff.closeWindow();
-        }, 500000); 
+        }, 500); 
         // 0.5秒後に閉じる
     } catch (error) {
         console.error("LIFFの初期化に失敗:", error);
@@ -96,7 +96,6 @@ async function sendToGAS(userId, displayName, token, bmFlg) {
         formData.append("displayName", displayName);
         formData.append("token", token);
         formData.append("bmFlg", bmFlg ?? ""); 
-        formData.append("testsend", "testtesttest"); 
 
         const response = await fetch(getGASUrl(), {
             method: "POST",
