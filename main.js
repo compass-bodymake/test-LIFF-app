@@ -44,14 +44,25 @@ async function initializeLIFF() {
         await liff.init({ liffId: currentLIFFId });
         console.log("✅ LIFF初期化成功！");
 
-        // ✅ ログインしていなければログイン処理を行う
-        if (!liff.isLoggedIn()) {
-           console.log("LINEログインが必要です");
-           // ← クエリを確実に保持して戻る
-           liff.login({ redirectUri: window.location.href });
-           return;
+        // ===== 防弾ガード：外部ブラウザならLINEアプリに戻す =====
+        const inClient = liff.isInClient();
+        const loggedIn = liff.isLoggedIn();
+        console.log("env:", { inClient, loggedIn, href: location.href, ua: navigator.userAgent });
+    
+        if (!inClient) {
+            const deepLink = `https://liff.line.me/${currentLIFFId}` + (location.search || "");
+            console.log("外部ブラウザ検出 → LINEアプリに戻す:", deepLink);
+            location.replace(deepLink);
+            return;
         }
-        console.log("ログイン済み！ユーザー情報、URLパラメータを取得します");
+    
+        // アプリ内で未ログインの場合のみログイン
+        if (!loggedIn) {
+            console.log("LINEアプリ内だが未ログイン → login発火");
+            liff.login({ redirectUri: window.location.href });
+            return;
+        }
+        console.log("LINEアプリ内＆ログイン済み → 通常処理へ");
 
         // ✅ ユーザー情報を取得 (LINE IDとLINE名)
         const profile = await liff.getProfile();
