@@ -62,13 +62,36 @@ async function initializeLIFF() {
             } else {
                 console.log("外部でループ検知 → 手動案内へ切り替え");
                  document.body.innerHTML = `
-                   <div style="padding:20px;font-size:16px;">
-                     この画面は外部ブラウザです。<br>
-                     <br>
-                     <a href="line://app/${currentLIFFId}${location.search || ""}" style="font-size:18px;color:#06C;">
-                       LINEアプリで開く
-                     </a>
-                   </div>
+                   <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 28px; text-align: center; color: #222; line-height: 1.7;">
+                      <img src="https://scdn.line-apps.com/n/line_liff/img/line_logo.png" alt="LINE" width="60" style="margin-bottom: 16px;">
+                    
+                      <h2 style="font-size: 20px; font-weight: 600; margin-bottom: 12px;">
+                        この画面は外部ブラウザです
+                      </h2>
+                    
+                      <p style="font-size: 15px; margin-bottom: 22px;">
+                        ボディメイクナビの登録処理を行うには、<br>
+                        <b>スマホのLINEアプリで開く必要があります。</b>
+                      </p>
+                    
+                      <a href="line://app/LIFF_ID_REPLACE?token=TOKEN_REPLACE&bmFlg=BMFLG_REPLACE"
+                         style="display: inline-block; background: #06C755; color: #fff; padding: 12px 18px; border-radius: 10px; font-size: 16px; text-decoration: none; font-weight: 600; margin-bottom: 18px;">
+                        LINEアプリで開く
+                      </a>
+                    
+                      <p style="font-size: 14px; color: #555; margin-bottom: 8px;">
+                        うまく開けない場合はこちら
+                      </p>
+                    
+                      <button onclick="navigator.clipboard.writeText(window.location.href)"
+                        style="background:#f1f1f1; padding:10px 16px; border:0; border-radius:8px; font-size:14px; cursor:pointer; color:#333;">
+                        URLをコピーする
+                      </button>
+                    
+                      <p style="font-size: 13px; color:#777; margin-top: 16px;">
+                        コピーしたURLをLINEのトークに貼り付けて開けます。
+                      </p>
+                    </div>
                  `;
                  return;
                }
