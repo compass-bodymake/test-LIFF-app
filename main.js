@@ -48,12 +48,30 @@ async function initializeLIFF() {
         const inClient = liff.isInClient();
         const loggedIn = liff.isLoggedIn();
         console.log("env:", { inClient, loggedIn, href: location.href, ua: navigator.userAgent });
-    
+
+        // ループ防止フラグ
+        const forcedOnce = sessionStorage.getItem("forcedOnce");
+        
         if (!inClient) {
-            const deepLink = `https://liff.line.me/${currentLIFFId}` + (location.search || "");
-            console.log("外部ブラウザ検出 → LINEアプリに戻す:", deepLink);
-            location.replace(deepLink);
-            return;
+            if (!forcedOnce) {
+                sessionStorage.setItem("forcedOnce", "1");
+                const deepLink = `https://liff.line.me/${currentLIFFId}` + (location.search || "");
+                console.log("外部ブラウザ検出 → LINEアプリに戻す:", deepLink);
+                location.replace(deepLink);
+                return;
+            } else {
+                console.log("外部でループ検知 → 手動案内へ切り替え");
+                 document.body.innerHTML = `
+                   <div style="padding:20px;font-size:16px;">
+                     この画面は外部ブラウザです。<br>
+                     <br>
+                     <a href="line://app/${currentLIFFId}${location.search || ""}" style="font-size:18px;color:#06C;">
+                       LINEアプリで開く
+                     </a>
+                   </div>
+                 `;
+                 return;
+               }
         }
     
         // アプリ内で未ログインの場合のみログイン
