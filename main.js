@@ -64,12 +64,13 @@ async function initializeLIFF() {
                  document.body.innerHTML = `
                     <div style="padding:20px;font-size:16px;">
                      この画面は外部ブラウザです。<br>
+                     スマートフォンのLINEアプリで開いてください。<br>
                      <br>
                      <a href="line://app/${currentLIFFId}${location.search || ""}" style="font-size:18px;color:#06C;">
                        LINEアプリで開く
                      </a><br>
                      <br>
-                     メール認証時はPCではなくスマートフォンで行ってください。
+                     ※PC/Chromeでは自動遷移できない場合があります
                    </div>
                  `;
                  return;
